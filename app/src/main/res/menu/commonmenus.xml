@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mnuNewInvoice"
+        android:title="New Invoice" />
+    <item
+        android:id="@+id/mnuUserDetails"
+        android:title="User Details" />
+    <item
+        android:id="@+id/mnuContractor"
+        android:title="Add Contractor" />
+    <item
+        android:id="@+id/mnuDeleteInvoice"
+        android:title="Delete Invoice" />
+</menu>

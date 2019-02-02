@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InvoiceActivity2">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <EditText
+            android:id="@+id/etWorkDoneID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="Enter work carried out"
+            android:inputType="textCapSentences|textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.382"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="94dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="368dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="72dp"
+            android:text="@string/hourly_rate"
+            tools:layout_editor_absoluteX="44dp"
+            tools:layout_editor_absoluteY="169dp" />
+
+        <EditText
+            android:id="@+id/etHourlyRateID"
+            android:layout_width="154dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="22dp"
+            android:background="@android:color/holo_blue_light"
+            android:ems="10"
+            android:hint="Enter Hourly Rate"
+            android:inputType="numberDecimal" />
+
+    </RelativeLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="382dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="224dp"
+            android:text="@string/start_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="224dp"
+            android:text="@string/start_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="224dp"
+            android:text="@string/start_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/date_worked"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDateWorkedID"
+            android:layout_width="140dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="40dp"
+            android:background="@android:color/holo_blue_light"
+            android:hint="Enter Date Worked"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="368dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <Button
+            android:id="@+id/btnAddDayID"
+            android:layout_width="102dp"
+            android:layout_height="37dp"
+            android:layout_below="@+id/etHoursWorkedID"
+            android:layout_alignBaseline="@+id/textView23"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="241dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/add_day"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="338dp" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="109dp"
+            android:layout_marginBottom="58dp"
+            android:text="@string/add_days_worked"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="349dp" />
+
+        <TextView
+            android:id="@+id/etHoursWorkedID"
+            android:layout_width="82dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/textView25"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="23dp"
+            tools:layout_editor_absoluteX="258dp"
+            tools:layout_editor_absoluteY="290dp" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="171dp"
+            android:layout_toEndOf="@+id/textView30"
+            android:text="@string/hours_worked" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView25"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="165dp"
+            android:text="@string/end_time" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="26dp"
+            android:text="@string/start_time" />
+
+        <TextView
+            android:id="@+id/tvStartTimeID"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="37dp"
+            android:background="@android:color/holo_blue_light"
+            android:hint="Enter Start Time"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvEndTimeID"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="37dp"
+            android:background="@android:color/holo_blue_light"
+            android:hint="Enter End Time"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnDeleteDayID"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_alignTop="@+id/textView30"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="242dp"
+            android:layout_marginTop="110dp"
+            android:enabled="false"
+            android:text="Delete Day" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="322dp"
+        android:layout_height="199dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="45dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
+
+        <ListView
+            android:id="@+id/lvDaysID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnSaveInvoiceID"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="19dp"
+        android:text="Save Invoice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="395dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/work_carried_out" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnExitInvoiceID"
+        android:layout_width="123dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="44dp"
+        android:text="Exit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+</android.support.constraint.ConstraintLayout>
