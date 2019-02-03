@@ -9,6 +9,6 @@
         android:id="@+id/simpleTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner" />
+        android:timePickerMode="spinner"/>
 
 </android.support.constraint.ConstraintLayout>

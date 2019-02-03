@@ -12,14 +12,14 @@ public class StringUtils {
         sb.append(text);
         text = sb.toString();
 
-        if (!maxlength) {
-            if (text.length() > 8) {
+        if(!maxlength){
+            if(text.length() > 8){
                 maxlength = true;
             }
             if (!maxlength) {
                 text.toUpperCase();
 
-                if (text.length() == 1) {
+                if(text.length() == 1){
                     if (text.matches("[Q,V,X,q,v,x]")) {
                         removeLastChar(text);
                     }
@@ -27,12 +27,12 @@ public class StringUtils {
                         removeLastChar(text);
                     }
                 }
-                if (text.length() == 2) {
+                if(text.length() == 2) {
                     if (text.matches("[I,J,Z,i,j,z]")) {
                         removeLastChar(text);
                     }
                 }
-                if (text.length() == 3) {
+                if(text.length() == 3) {
                     if (text.matches("[^A,B,C,D,E,F,G,H,J,K,S,T,U,W,a,b,c,d,e,f,g,h,j,k,s,t,u,w]")
                             && Character.isLetter(text.charAt(text.length() - 1))) {
                         removeLastChar(text);
@@ -42,7 +42,7 @@ public class StringUtils {
                         removeLastChar(text);
                     }
                 }
-                if (text.length() == 4) {
+                if(text.length() == 4) {
                     if (Character.isDigit(text.charAt(text.length() - 3))
                             && Character.isLetter(text.charAt(text.length() - 2))
                             && Character.isLetter(text.charAt(text.length() - 1))) {
@@ -73,18 +73,18 @@ public class StringUtils {
                         insertSpace(1, text, ' ');
                     }
                 }
-                if (text.length() == 5) {
+                if(text.length() == 5) {
                     if (text.matches("[C,I,K,M,O,V,c,i,k,m,o,v]")) {
                         removeLastChar(text);
                     }
                     if (Character.isLetter(text.charAt(text.length() - 1))
                             && Character.isDigit(text.charAt(text.length() - 2))
-                            && Character.isDigit(text.charAt(text.length() - 3))) {
+                            && Character.isDigit(text.charAt(text.length() - 3))){
                         insertSpace(1, text, ' ');
                     }
                     if (Character.isDigit(text.charAt(text.length() - 1))
                             && Character.isLetter(text.charAt(text.length() - 2))
-                            && Character.isDigit(text.charAt(text.length() - 3))) {
+                            && Character.isDigit(text.charAt(text.length() - 3))){
                         insertSpace(1, text, ' ');
                     }
                     if (Character.isLetter(text.charAt(text.length() - 1))
@@ -98,11 +98,11 @@ public class StringUtils {
                         insertSpace(1, text, ' ');
                     }
                     if (Character.isDigit(text.charAt(text.length() - 3))
-                            && Character.isLetter(text.charAt(text.length() - 2))) {
+                            && Character.isLetter(text.charAt(text.length()-2))){
                         removeLastChar(text);
                     }
                 }
-                if (text.length() == 6) {
+                if(text.length() == 6) {
                     if (text.matches("[C,I,K,M,O,V,c,i,k,m,o,v]")) {
                         removeLastChar(text);
                     }
@@ -122,36 +122,37 @@ public class StringUtils {
                             && Character.isDigit(text.charAt(text.length() - 1))) {
                         removeLastChar(text);
                     }
-                    if (Character.isLetter(text.charAt(text.length() - 1))
-                            && Character.isLetter(text.charAt(text.length() - 2))) {
+                    if(Character.isLetter(text.charAt(text.length() - 1))
+                            && Character.isLetter(text.charAt(text.length() - 2))){
                         maxlength = true;
                     }
                 }
-                if (text.length() == 7) {
+                if(text.length() == 7) {
                     if (text.matches("[C,I,K,M,O,V,c,i,k,m,o,v]")) {
                         removeLastChar(text);
                     }
                     if (Character.isDigit(text.charAt(text.length() - 1))) {
                         removeLastChar(text);
-                    } else {
-                        if (Character.isLetter(text.charAt(text.length() - 1))
-                                && Character.isLetter(text.charAt(text.length() - 2))) {
+                    }
+                    else{
+                        if(Character.isLetter(text.charAt(text.length() - 1))
+                                && Character.isLetter(text.charAt(text.length() - 2))){
                             maxlength = true;
                         }
                     }
                 }
             }
-            if (text.length() == 8) {
+            if(text.length() == 8) {
                 if (text.matches("[C,I,K,M,O,V,c,i,k,m,o,v]")) {
                     removeLastChar(text);
                 }
                 if (Character.isDigit(text.charAt(text.length() - 1))) {
                     removeLastChar(text);
-                } else {
+                }else {
                     maxlength = true;
                 }
             }
-            if (text.length() == 9) {
+            if(text.length() == 9) {
                 maxlength = true;
             }
             text.toUpperCase();
@@ -164,11 +165,11 @@ public class StringUtils {
         return str.substring(0, str.length() - 1);
     }
 
-    private static String insertSpace(int distance, String original, char c) {
+    private static String insertSpace(int distance, String original, char c){
         StringBuilder sb = new StringBuilder();
         char[] charArrayOfOriginal = original.toCharArray();
-        for (int ch = 0; ch < charArrayOfOriginal.length; ch++) {
-            if (ch % distance == 0)
+        for(int ch = 0 ; ch < charArrayOfOriginal.length ; ch++){
+            if(ch % distance == 0)
                 sb.append(c).append(charArrayOfOriginal[ch]);
             else
                 sb.append(charArrayOfOriginal[ch]);
@@ -176,14 +177,14 @@ public class StringUtils {
         return sb.toString();
     }
 
-    public String capitalise(String word) {
+    public String capitalise(String word){
         StringBuffer sb = new StringBuffer();
         System.out.println("Into capitalise");
-        if (word.length() < 1) {
+        if(word.length() < 1){
             return "";
         }
 
-        if (word == null || word == "") {
+        if(word == null || word == "")  {
             return "";
         }
         String[] arr = word.split(" ");

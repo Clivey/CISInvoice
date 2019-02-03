@@ -11,8 +11,7 @@ public class Days {
         this.totalTime = totalTime;
     }
 
-    public Days() {
-    }
+    public Days(){}
 
     public String getDate() {
         return date;

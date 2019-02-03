@@ -5,7 +5,7 @@ public class ListContractor {
     private String name;
     private String town;
 
-    public ListContractor(String name, String ID, String town) {
+    public ListContractor(String name, String ID,  String town) {
         this.ID = ID;
         this.name = name;
         this.town = town;

@@ -39,7 +39,7 @@ public class InvoiceAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView = layoutInflater.inflate(R.layout.custom_invoice, null);
+        convertView = layoutInflater.inflate(R.layout.custom_invoice,null);
         TextView t1_id = convertView.findViewById(R.id.tvInvoiceNoID);
         TextView t2_name = convertView.findViewById(R.id.tvInvoiceDateID);
 

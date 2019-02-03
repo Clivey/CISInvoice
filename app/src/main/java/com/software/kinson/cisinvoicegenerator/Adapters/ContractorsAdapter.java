@@ -41,7 +41,7 @@ public class ContractorsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView = layoutInflater.inflate(R.layout.custom_row, null);
+        convertView = layoutInflater.inflate(R.layout.custom_row,null);
         TextView t1_id = convertView.findViewById(R.id.tvCustomRowID);
         TextView t2_name = convertView.findViewById(R.id.tvCustomRowName);
         TextView t3_town = convertView.findViewById(R.id.tvCustomRowTown);

@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.Button;
 
 public class BaseActivity extends AppCompatActivity {
-    public Menu toggleMenu;
     DatabaseHelper myDb;
     DbUtils myUtils;
     Button btnNewCon, btnNewInv, btnExit, btnDeleteInvoice, btnEditInvoice;
+    public Menu toggleMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +36,26 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 InvoiceGlobals.editInvoice = true;
-                Intent intent = new Intent(BaseActivity.this, ListContractorActivity.class);
+                Intent intent = new Intent(BaseActivity.this,ListContractorActivity.class);
                 finish();
                 startActivity(intent);
             }
         });
     }
 
-    public void showContractor() {
+    public void showContractor(){
         btnNewCon.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(BaseActivity.this, ContractorsActivity.class);
+                        Intent intent = new Intent(BaseActivity.this,ContractorsActivity.class);
                         finish();
                         startActivity(intent);
                     }
                 }
         );
     }
-
-    public void exitApp() {
+    public void exitApp(){
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,13 +64,13 @@ public class BaseActivity extends AppCompatActivity {
         });
     }
 
-    public void showInvoice() {
+    public void showInvoice(){
         btnNewInv.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         InvoiceGlobals.editInvoice = false;
-                        Intent intent = new Intent(BaseActivity.this, ListContractorActivity.class);
+                        Intent intent = new Intent(BaseActivity.this,ListContractorActivity.class);
                         finish();
                         startActivity(intent);
                     }
@@ -78,16 +78,16 @@ public class BaseActivity extends AppCompatActivity {
         );
     }
 
-    public void showNewInvoice() {
+    public void showNewInvoice(){
         InvoiceGlobals.editInvoice = false;
-        Intent intent = new Intent(this, ListContractorActivity.class);
+        Intent intent = new Intent(this,ListContractorActivity.class);
         finish();
         startActivity(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.commonmenus, menu);
+        getMenuInflater().inflate(R.menu.commonmenus,menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -100,19 +100,23 @@ public class BaseActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    public void toggleItem() {
-        MenuItem item1 = toggleMenu.findItem(R.id.mnuNewInvoice);
-        MenuItem item2 = toggleMenu.findItem(R.id.mnuContractor);
-        if (Globals.userData) {
-            item1.setVisible(false);
-            item2.setVisible(true);
-        } else {
+    public void toggleItem(){
+        MenuItem item1= toggleMenu.findItem(R.id.mnuNewInvoice);
+        MenuItem item2= toggleMenu.findItem(R.id.mnuContractor);
+        if(Globals.userData)
+        {
             item1.setVisible(false);
             item2.setVisible(true);
         }
-        if (Globals.userData && Globals.contractorsData) {
+        else
+        {
+            item1.setVisible(false);
+            item2.setVisible(true);
+        }
+        if(Globals.userData && Globals.contractorsData){
             item1.setVisible(true);
-        } else {
+        }
+        else{
             item1.setVisible(false);
         }
     }
@@ -135,18 +139,18 @@ public class BaseActivity extends AppCompatActivity {
             Globals.userMenuClicked = false;
             Globals.triggerUserDetails = true;
             //Toast.makeText(this, "User Details", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(BaseActivity.this, MainActivity.class);
+            Intent intent = new Intent(BaseActivity.this,MainActivity.class);
             finish();
             startActivity(intent);
         }
         if (id == R.id.mnuContractor) {
             Globals.userMenuClicked = false;
             //Toast.makeText(this, "Add Contractor", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ContractorsActivity.class);
+            Intent intent = new Intent(this,ContractorsActivity.class);
             finish();
             startActivity(intent);
         }
-        if (id == R.id.mnuDeleteInvoice) {
+        if(id == R.id.mnuDeleteInvoice){
 
         }
 //        if (id == R.id.mnuSettings) {

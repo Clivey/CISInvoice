@@ -11,8 +11,8 @@ import java.util.List;
 
 class CustomAdapter extends ArrayAdapter<ListContractor> {
 
-    int mResource;
     private Context mContext;
+    int mResource;
 
     public CustomAdapter(Context context, int resource, List<ListContractor> objects, Context mContext, int mResource) {
         super(context, resource, objects);
@@ -30,7 +30,7 @@ class CustomAdapter extends ArrayAdapter<ListContractor> {
 
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         //View view = layoutInflater.inflate(R.layout.custom_row, parent, false);
-        convertView = layoutInflater.inflate(mResource, parent, false);
+        convertView = layoutInflater.inflate(mResource,parent,false);
 
         TextView tvID = convertView.findViewById(R.id.tvCustomRowID);
         TextView tvName = convertView.findViewById(R.id.tvCustomRowName);

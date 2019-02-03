@@ -57,8 +57,8 @@
             android:layout_marginEnd="22dp"
             android:background="@android:color/holo_blue_light"
             android:ems="10"
-            android:hint="Enter Hourly Rate"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:hint="Enter Hourly Rate" />
 
     </RelativeLayout>
 
@@ -117,11 +117,11 @@
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="40dp"
-            android:background="@android:color/holo_blue_light"
             android:hint="Enter Date Worked"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@android:color/holo_blue_light" />
 
     </android.support.constraint.ConstraintLayout>
 

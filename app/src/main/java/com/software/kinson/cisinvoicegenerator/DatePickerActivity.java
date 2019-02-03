@@ -23,13 +23,13 @@ public class DatePickerActivity extends AppCompatActivity {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 //DateFormat.getDateInstance(DateFormat.LONG).format(date);
                 Log.d(TAG, "onSelectedDayChanged : date: " + date);
-                if (Globals.DateIntent == "Invoice2") {
+                if(Globals.DateIntent == "Invoice2"){
                     Intent intent = new Intent(DatePickerActivity.this, InvoiceActivity2.class);
                     intent.putExtra("date", date);
                     finish();
                     Globals.DateIntent = "update";
                     startActivity(intent);
-                } else {
+                }else {
                     Intent intent = new Intent(DatePickerActivity.this, InvoiceActivity.class);
                     intent.putExtra("date", date);
                     finish();

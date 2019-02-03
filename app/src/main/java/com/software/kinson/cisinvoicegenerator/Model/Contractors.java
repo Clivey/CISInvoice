@@ -10,8 +10,7 @@ public class Contractors {
         this.town = town;
     }
 
-    public Contractors() {
-    }
+    public Contractors(){}
 
     public int getId() {
         return id;

@@ -31,7 +31,7 @@ public class ReportRunner {
 
         PdfReporter reporter = new PdfReporter(jrxmlPath, getOuputPdfFolder(), getFilenameFromJrxml(jrxmlPath));
 
-        return reporter;
+        return  reporter;
     }
 
     private String getRootFolder() {

@@ -1,7 +1,7 @@
 package com.software.kinson.cisinvoicegenerator;
 
 public class Globals {
-    public static Boolean showUserDetails = false;
+    public  static Boolean showUserDetails = false;
     public static Boolean userMenuClicked = true;
     public static Boolean userData = false;
     public static Boolean contractorsData = false;

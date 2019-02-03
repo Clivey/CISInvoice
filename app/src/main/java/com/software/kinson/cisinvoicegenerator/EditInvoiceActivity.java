@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class EditInvoiceActivity extends BaseActivity {
     DatabaseHelper myDb;
-    ArrayList<Invoices> arrayList;
-    InvoiceAdapter invoiceAdapter;
     private ListView listView;
     private Button btnCancel;
+    ArrayList<Invoices> arrayList;
+    InvoiceAdapter invoiceAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class EditInvoiceActivity extends BaseActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditInvoiceActivity.this, BaseActivity.class);
+                Intent intent = new Intent(EditInvoiceActivity.this,BaseActivity.class);
                 finish();
                 startActivity(intent);
             }
@@ -53,14 +53,14 @@ public class EditInvoiceActivity extends BaseActivity {
                 TextView tvTemp1 = view.findViewById(R.id.tvInvoiceNoID);
                 InvoiceGlobals.invoiceNo = Integer.parseInt(tvTemp1.getText().toString());
                 arrayList = myDb.populateInvoiceList();
-                invoiceAdapter = new InvoiceAdapter(EditInvoiceActivity.this, arrayList);
+                invoiceAdapter = new InvoiceAdapter(EditInvoiceActivity.this,arrayList);
                 listView.setAdapter(invoiceAdapter);
                 invoiceAdapter.notifyDataSetChanged();
 
 
-                if (InvoiceGlobals.editInvoice) {
+                if(InvoiceGlobals.editInvoice){
                     //Toast.makeText(EditInvoiceActivity.this, "On Click Listener Invoice Number = " + InvoiceGlobals.invoiceNo, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EditInvoiceActivity.this, InvoiceActivity.class);
+                    Intent intent = new Intent(EditInvoiceActivity.this,InvoiceActivity.class);
                     finish();
                     startActivity(intent);
                 }
@@ -70,7 +70,7 @@ public class EditInvoiceActivity extends BaseActivity {
 
     private void loadInvoiceData() {
         arrayList = myDb.populateInvoiceList();
-        invoiceAdapter = new InvoiceAdapter(this, arrayList);
+        invoiceAdapter = new InvoiceAdapter(this,arrayList);
         listView.setAdapter(invoiceAdapter);
         invoiceAdapter.notifyDataSetChanged();
         //Toast.makeText(EditInvoiceActivity.this, "Contractor ID is " + Globals.contractorID, Toast.LENGTH_SHORT).show();

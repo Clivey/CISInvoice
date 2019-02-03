@@ -46,7 +46,7 @@ public class ContractorsActivity extends BaseActivity {
         cisCheckBox = findViewById(R.id.cbCisID);
         Intent intent = getIntent();
         conName = intent.getStringExtra("conName");
-        conID = intent.getIntExtra("conID", 0);
+        conID = intent.getIntExtra("conID",0);
         //showMessage("Query",conName);
         //showMessage("Query ",Globals.companyQry);
         addContractorData();
@@ -56,10 +56,10 @@ public class ContractorsActivity extends BaseActivity {
         cancelContractorData();
     }
 
-    public void showContractorData() {
+    public void showContractorData(){
         Cursor res = myDb.getContractorID(conName);
         //showMessage("Query ",Globals.companyQry);
-        if (res.getCount() == 0) {
+        if(res.getCount() == 0){
             //showMessage("Error","No data to show");
             Toast.makeText(ContractorsActivity.this, "No Contractor Data to show", Toast.LENGTH_SHORT).show();
             return;
@@ -67,7 +67,7 @@ public class ContractorsActivity extends BaseActivity {
 
         //StringBuffer buffer = new StringBuffer();
         //while (res.moveToFirst()){
-        if (res.getCount() > 0) {
+        if(res.getCount() > 0){
             //showMessage("Query","rescount > 0");
             res.moveToFirst();
             //buffer.append("ID : "+res.getString(0)+"\n");
@@ -88,7 +88,7 @@ public class ContractorsActivity extends BaseActivity {
             editTelno.setText(res.getString(7));
             //buffer.append("Bank : "+res.getString(8)+"\n");
             editEmail.setText(res.getString(8));
-            if (res.getInt(9) == 1) {
+            if(res.getInt(9) == 1){
                 cisCheckBox.setChecked(true);
             }
             btnDelete.setEnabled(true);
@@ -97,16 +97,17 @@ public class ContractorsActivity extends BaseActivity {
         }
     }
 
-    public void deleteContractor() {
+    public void deleteContractor(){
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Integer deleteRows = myDb.deleteContractorsData(tvID.getText().toString());
-                if (deleteRows > 0) {
+                if(deleteRows > 0){
                     Toast.makeText(ContractorsActivity.this, "Data sucessfully deleted", Toast.LENGTH_SHORT).show();
                     clearEdits();
 
-                } else {
+                }
+                else{
                     Toast.makeText(ContractorsActivity.this, "Data deletetion failed", Toast.LENGTH_SHORT).show();
                 }
 
@@ -114,11 +115,11 @@ public class ContractorsActivity extends BaseActivity {
         });
     }
 
-    public void cancelContractorData() {
+    public void cancelContractorData(){
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ContractorsActivity.this, BaseActivity.class);
+                Intent intent = new Intent(ContractorsActivity.this,BaseActivity.class);
                 Globals.conEdit = false;
                 finish();
                 startActivity(intent);
@@ -126,13 +127,13 @@ public class ContractorsActivity extends BaseActivity {
         });
     }
 
-    public void viewContractorData() {
+    public void viewContractorData(){
         btnView.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Globals.conEdit = true;
-                        Intent intent = new Intent(ContractorsActivity.this, ListContractorActivity.class);
+                        Intent intent = new Intent(ContractorsActivity.this,ListContractorActivity.class);
                         //Globals.conEdit = false;
                         finish();
                         startActivity(intent);
@@ -141,47 +142,48 @@ public class ContractorsActivity extends BaseActivity {
         );
     }
 
-    public void addContractorData() {
+    public void addContractorData(){
         btnAdd.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (editName.getText().toString().isEmpty()) {
+                        if(editName.getText().toString().isEmpty()) {
                             Toast.makeText(ContractorsActivity.this, "Name is required", Toast.LENGTH_SHORT).show();
                             editName.requestFocus();
                             return;
                         }
-                        if (editAddress.getText().toString().isEmpty()) {
+                        if(editAddress.getText().toString().isEmpty()) {
                             Toast.makeText(ContractorsActivity.this, "Address is required", Toast.LENGTH_SHORT).show();
                             editAddress.requestFocus();
                             return;
                         }
-                        if (editTown.getText().toString().isEmpty()) {
+                        if(editTown.getText().toString().isEmpty()) {
                             Toast.makeText(ContractorsActivity.this, "Town is required", Toast.LENGTH_SHORT).show();
                             editTown.requestFocus();
                             return;
                         }
-                        if (editPostCode.getText().toString().isEmpty()) {
+                        if(editPostCode.getText().toString().isEmpty()) {
                             Toast.makeText(ContractorsActivity.this, "Post code is required", Toast.LENGTH_SHORT).show();
                             editPostCode.requestFocus();
                             return;
                         }
-                        if (editTelno.getText().toString().isEmpty()) {
+                        if(editTelno.getText().toString().isEmpty()) {
                             Toast.makeText(ContractorsActivity.this, "Telephone number is required", Toast.LENGTH_SHORT).show();
                             editTelno.requestFocus();
                             return;
                         }
-                        if (editEmail.getText().toString().isEmpty()) {
+                        if(editEmail.getText().toString().isEmpty()) {
                             Toast.makeText(ContractorsActivity.this, "Email address is required", Toast.LENGTH_SHORT).show();
                             editEmail.requestFocus();
                             return;
                         }
-                        if (Globals.conEdit) {
+                        if(Globals.conEdit) {
                             int checked = 0;
-                            if (cisCheckBox.isChecked()) {
+                            if(cisCheckBox.isChecked()){
                                 checked = 1;
                                 Toast.makeText(ContractorsActivity.this, "checked = " + checked, Toast.LENGTH_SHORT).show();
-                            } else {
+                            }
+                            else{
                                 checked = 0;
                                 Toast.makeText(ContractorsActivity.this, "checked = " + checked, Toast.LENGTH_SHORT).show();
                             }
@@ -195,12 +197,13 @@ public class ContractorsActivity extends BaseActivity {
                                     editEmail.getText().toString(), String.valueOf(checked));
 
 
+
                             if (isConUpdated == true) {
                                 Toast.makeText(ContractorsActivity.this, "Contractors Data sucessfully updated", Toast.LENGTH_SHORT).show();
                                 Globals.contractorsData = true;
                                 Globals.conEdit = false;
                                 btnView.setEnabled(true);
-                                Intent intent = new Intent(ContractorsActivity.this, BaseActivity.class);
+                                Intent intent = new Intent(ContractorsActivity.this,BaseActivity.class);
                                 finish();
                                 startActivity(intent);
                             } else {
@@ -208,19 +211,20 @@ public class ContractorsActivity extends BaseActivity {
                                 Globals.conEdit = false;
                                 btnView.setEnabled(true);
                             }
-                        } else {
+                        }
+                        else{
                             //showMessage("Contractor","conEdit = false");
                             boolean isConInserted = myDb.addContractorsData(editName.getText().toString(),
                                     editAddress.getText().toString(), editArea.getText().toString(),
                                     editTown.getText().toString(), editCounty.getText().toString(),
                                     editPostCode.getText().toString(), editTelno.getText().toString(),
-                                    editEmail.getText().toString(), String.valueOf(checked));
+                                    editEmail.getText().toString(),String.valueOf(checked));
 
 
                             if (isConInserted == true) {
                                 Toast.makeText(ContractorsActivity.this, "Contractors Data sucessfully inserted", Toast.LENGTH_SHORT).show();
                                 Globals.contractorsData = true;
-                                Intent intent = new Intent(ContractorsActivity.this, BaseActivity.class);
+                                Intent intent = new Intent(ContractorsActivity.this,BaseActivity.class);
                                 finish();
                                 startActivity(intent);
                             } else {
@@ -234,7 +238,7 @@ public class ContractorsActivity extends BaseActivity {
         );
     }
 
-    public void showMessage(String title, String message) {
+    public void showMessage(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -242,7 +246,7 @@ public class ContractorsActivity extends BaseActivity {
         builder.show();
     }
 
-    public void clearEdits() {
+    public void clearEdits(){
         tvID.setText("");
         editName.setText("");
         editAddress.setText("");

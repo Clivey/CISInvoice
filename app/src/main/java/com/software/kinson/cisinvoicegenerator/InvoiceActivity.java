@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class InvoiceActivity extends BaseActivity {
     DatabaseHelper myDb;
     Button btnNext;
-    TextView displayDate, invoiceNumber, workDescription, workArea, workTown, workPostCode, workAddress, workCounty;
+    TextView displayDate, invoiceNumber, workDescription,workArea,workTown,workPostCode, workAddress, workCounty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +34,16 @@ public class InvoiceActivity extends BaseActivity {
         String date = intent.getStringExtra("date");
         displayDate.setText(date);
 
-        if (InvoiceGlobals.editInvoice) {
+        if(InvoiceGlobals.editInvoice){
             invoiceNumber.setText(String.valueOf(InvoiceGlobals.invoiceNo));
             showInvoiceData();
             //Toast.makeText(this, "onCreate editInvoice = true", Toast.LENGTH_SHORT).show();
-        } else
+        }else
             invoiceNumber.setText(String.valueOf(invNo));
         showActivityTwo();
     }
 
-    public void showActivityTwo() {
+    public void showActivityTwo(){
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,18 +57,18 @@ public class InvoiceActivity extends BaseActivity {
 //                    InvoiceGlobals.contractorID = Globals.contractorID;
 //                    Toast.makeText(InvoiceActivity.this, "editInvoice = true", Toast.LENGTH_SHORT).show();
 //                }else {
-                InvoiceGlobals.invoiceDate = displayDate.getText().toString();
-                InvoiceGlobals.workDescription = workDescription.getText().toString();
-                InvoiceGlobals.workAddress = workAddress.getText().toString();
-                InvoiceGlobals.workArea = workArea.getText().toString();
-                InvoiceGlobals.workTown = workTown.getText().toString();
-                InvoiceGlobals.workCounty = workCounty.getText().toString();
-                InvoiceGlobals.workPostCode = workPostCode.getText().toString();
-                InvoiceGlobals.contractorID = Globals.contractorID;
-                //Toast.makeText(InvoiceActivity.this, "editInvoice = false", Toast.LENGTH_SHORT).show();
+                    InvoiceGlobals.invoiceDate = displayDate.getText().toString();
+                    InvoiceGlobals.workDescription = workDescription.getText().toString();
+                    InvoiceGlobals.workAddress = workAddress.getText().toString();
+                    InvoiceGlobals.workArea = workArea.getText().toString();
+                    InvoiceGlobals.workTown = workTown.getText().toString();
+                    InvoiceGlobals.workCounty = workCounty.getText().toString();
+                    InvoiceGlobals.workPostCode = workPostCode.getText().toString();
+                    InvoiceGlobals.contractorID = Globals.contractorID;
+                    //Toast.makeText(InvoiceActivity.this, "editInvoice = false", Toast.LENGTH_SHORT).show();
                 //}
 
-                Intent intent = new Intent(InvoiceActivity.this, InvoiceActivity2.class);
+                Intent intent = new Intent(InvoiceActivity.this,InvoiceActivity2.class);
                 finish();
                 Globals.DateIntent = "Invoice2";
                 startActivity(intent);
@@ -76,7 +76,7 @@ public class InvoiceActivity extends BaseActivity {
         });
     }
 
-    public void showMessage(String title, String message) {
+    public void showMessage(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -88,13 +88,13 @@ public class InvoiceActivity extends BaseActivity {
         Cursor res = myDb.editInvoiceData(InvoiceGlobals.invoiceNo);
         int c = res.getCount();
         //Toast.makeText(this, "res count = " + c, Toast.LENGTH_SHORT).show();
-        if (res.getCount() == 0) {
+        if(res.getCount() == 0){
             //showMessage("Error","No data to show");
             Toast.makeText(InvoiceActivity.this, "No Invoice Data to show", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (res.getCount() > 0) {
+        if(res.getCount() > 0) {
             //Toast.makeText(this, "There is data", Toast.LENGTH_SHORT).show();
             //showMessage("Query","rescount > 0");
             res.moveToFirst();

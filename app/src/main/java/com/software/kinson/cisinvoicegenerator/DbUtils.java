@@ -21,7 +21,7 @@ public class DbUtils {
         return tableQry;
     }
 
-    public static String createInvoiceTable() {
+    public static String createInvoiceTable(){
         String str = null;
 
         str = "CREATE TABLE if not exists " + INVOICE_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -32,27 +32,27 @@ public class DbUtils {
         return str;
     }
 
-    public static String createContractorTable() {
+    public static String createContractorTable(){
         String str = null;
 
-        str = "CREATE TABLE if not exists " + CONTRACTORS_TABLE + " (ID integer PRIMARY KEY AUTOINCREMENT," +
+        str =   "CREATE TABLE if not exists " + CONTRACTORS_TABLE + " (ID integer PRIMARY KEY AUTOINCREMENT," +
                 " name TEXT NOT NULL, address TEXT NOT NULL, area TEXT, town TEXT NOT NULL, " +
                 " county TEXT NOT NULL, post_code TEXT NOT NULL, tel_no INTEGER NOT NULL, email TEXT NOT NULL," +
                 " cis INTEGER);";
         return str;
     }
 
-    public static String createDaysWorkedTable() {
+    public static String createDaysWorkedTable(){
         String str = null;
 
-        str = "CREATE TABLE IF NOT EXISTS " + DAYS_WORKED_TABLE + " (ID integer PRIMARY KEY AUTOINCREMENT," +
+        str ="CREATE TABLE IF NOT EXISTS " + DAYS_WORKED_TABLE + " (ID integer PRIMARY KEY AUTOINCREMENT,"  +
                 " contractors_id integer not null, invoice_no integer not null, date text not null," +
                 " start_time real not null, end_time real not null, hours_worked real not null);";
         //Globals.companyQry = str;
         return str;
     }
 
-    public static String createInvoiceView() {
+    public static String createInvoiceView(){
         String str = null;
         str = "CREATE VIEW IF NOT EXISTS invoiceView AS SELECT" +
                 " companyTbl.ID as companyTbl_ID," +
