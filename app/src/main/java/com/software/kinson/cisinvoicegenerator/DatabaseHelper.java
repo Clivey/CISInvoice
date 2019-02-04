@@ -73,21 +73,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         myUtils = new DbUtils(DatabaseHelper.this);
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.execSQL(myUtils.createCompanyTable());
-//        db.execSQL(myUtils.createContractorTable());
-//        db.execSQL(myUtils.createInvoiceTable());
-//        db.execSQL(myUtils.createDaysWorkedTable());
-//        db.execSQL(myUtils.createInvoiceView());
         createTables();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-        //db.execSQL(createTables());
-        //createTables();
-        //db.close();
     }
 
     @Override
@@ -100,6 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //Create Database Tables if they don't exist
     public void createTables(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(DbUtils.createCompanyTable());
@@ -110,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Add Contractors to Table
     public boolean addContractorsData(String name, String address, String area, String town, String county, String postcode,
                                   String telno, String email, String cis){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -130,6 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    //Update days Table
     public boolean updateDay(String contractorID, String invoiceNo, String date, String startTime, String endTime, String hoursWorked){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -146,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    //Add new day to day Table
     public boolean addDay(String contractorID, String invoiceNo, String date, String startTime, String endTime, String hoursWorked){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -162,6 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    //Add new Invoice
     public boolean addInvoice(String contractorID, String invoiceNo, String date, String workAddress,
                               String workArea, String workTown, String workCounty, String workPostCode,
                               String workDescription, String workDone, String hourlyRate,
@@ -197,6 +192,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Update Invoice
     public boolean updateInvoice(String contractorID, String invoiceNo, String date, String workAddress,
                               String workArea, String workTown, String workCounty, String workPostCode,
                               String workDescription, String workDone, String hourlyRate,
@@ -232,6 +228,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Add Company details
     public boolean addCompanyData(String company, String address, String area, String town, String county, String postcode,
                            String telno, String bank, String accounttitle, String accountnumber, String sortcode, String utr,
                                   String email) {
@@ -262,12 +259,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //Retrieve all Company details
     public Cursor getAllCompanyData(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + COMPANY_TABLE, null);
         return res;
     }
 
+    //Get all Contractors details
     public Cursor getAllContractorsData(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + CONTRACTORS_TABLE + " order by name asc";
@@ -275,6 +274,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    //Get specific data from Days Table
     public Cursor getDaysData(int invoiceNo){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + DAYS_WORKED_TABLE +
@@ -286,6 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Check to see if specific day exists in Days Table
     public Cursor dayExists(String invoiceNo, String date){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + INVOICE_TABLE +
@@ -294,6 +295,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    //Edit specific invoice data
     public Cursor editInvoiceData(int invoiceNo){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + INVOICE_TABLE +
@@ -302,6 +304,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    //Retrieve specific invoice data
     public Cursor getInvoiceData(int conID){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + INVOICE_TABLE +
@@ -310,6 +313,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    //Get specific Contractor data
     public Cursor getContractorID(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + CONTRACTORS_TABLE +
@@ -320,6 +324,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    //Get Contractor ID
     public Cursor getContractorNumber(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + CONTRACTORS_TABLE +
@@ -330,6 +335,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    //Update Contractor data
     public boolean UpdateContractorsData(String id, String name, String address, String area, String town, String county, String postcode,
                                       String telno, String email, String cis){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -351,6 +357,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    //Update Company data
     public boolean updateCompanyData(String id, String company, String address, String area, String town, String county, String postcode,
                            String telno, String bank, String accounttitle, String accountnumber, String sortcode, String utr, String email){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -377,26 +384,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Delete Company data
     public Integer deleteCompanyData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(COMPANY_TABLE, "ID = ?", new String[] { id });
     }
 
+    //Delete specific day
     public Integer deleteDay(String invoiceNo, String date){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(DAYS_WORKED_TABLE,  "invoice_no = ? AND date = ?", new String[] { invoiceNo,date });
     }
 
+    //Delete specific Invoice
     public int deleteInvoice(String invoiceNo){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(DAYS_WORKED_TABLE, "invoice_no = ?", new String[] { invoiceNo });
     }
 
+    //Delete specific Contractor data
     public Integer deleteContractorsData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(CONTRACTORS_TABLE, "ID = ?", new String[] { id });
     }
 
+    //Check if specified Table has any data
     public Integer isTableEmpty(String tableName){
         SQLiteDatabase db = this.getWritableDatabase();
         String count = "SELECT count(*) FROM " + tableName;
@@ -408,6 +420,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return icount;
     }
 
+    //Increment the next Invoice number by one
     public Integer invoiceNumber(){
         SQLiteDatabase db = this.getWritableDatabase();
         String count = "SELECT count(*) FROM " + INVOICE_TABLE;
@@ -419,6 +432,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return num + 1;
     }
 
+    //Add all invoices for specified Contractor to display list
     public ArrayList<Invoices> populateInvoiceList(){
         ArrayList<Invoices> arrayList = new ArrayList<>();
         Cursor cursor = getInvoiceData(Globals.contractorID);
@@ -433,6 +447,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return arrayList;
     }
 
+    //Add all contractors data to display list
     public ArrayList<Contractors> populateList(){
         ArrayList<Contractors> arrayList = new ArrayList<>();
         Cursor cursor = getAllContractorsData();
@@ -449,6 +464,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //Add all Days to display list
     public ArrayList<Days> populateDays(){
         ArrayList<Days> arrayList = new ArrayList<>();
         Cursor cursor;
@@ -467,6 +483,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             Days days = new Days(date,start,end,total);
             arrayList.add(days);
+            //Increase variable totalHours in InvoiceGlobals
+            //to reflect the hours added
             InvoiceGlobals.totalHours = InvoiceGlobals.totalHours + total;
         }
         return arrayList;
