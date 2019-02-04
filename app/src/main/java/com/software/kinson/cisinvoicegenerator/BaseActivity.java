@@ -24,6 +24,10 @@ public class BaseActivity extends AppCompatActivity {
         btnEditInvoice = findViewById(R.id.btnEditInvoice);
         btnExit = findViewById(R.id.btnExitID);
         btnDeleteInvoice = findViewById(R.id.mnuDeleteInvoice);
+        if(Globals.invNo < 1)
+            btnEditInvoice.setEnabled(false);
+        else
+            btnEditInvoice.setEnabled(true);
 
         showContractor();
         showInvoice();

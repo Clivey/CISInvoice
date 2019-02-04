@@ -13,7 +13,8 @@ public class MainActivity extends BaseActivity {
 
     DatabaseHelper myDb;
     EditText editCompany, editAddress, editArea, editTown, editCounty, editPostCode, editTelno,
-        editBank, editAccountTitle, editAccountNumber, editSortCode, editUtr, editID, editEmail;
+        editBank, editAccountTitle, editAccountNumber, editSortCode1, editUtr, editID, editEmail,
+        editSortCode2, editSortCode3;
     Button btnAddData, btnViewUpdate, btnDelete;
     private int commonmenus;
 
@@ -21,8 +22,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Create new DatabaseHelper and create database if it does not exist
         myDb = new DatabaseHelper(MainActivity.this);
 
+        //Associate textfield objects
         editID = findViewById(R.id.editTextID);
         editCompany = findViewById(R.id.editTextCompany);
         editAddress = findViewById(R.id.etContractorsAddress);
@@ -34,7 +37,9 @@ public class MainActivity extends BaseActivity {
         editBank = findViewById(R.id.editTextBankName);
         editAccountTitle = findViewById(R.id.editTextAccountTitle);
         editAccountNumber = findViewById(R.id.editTextAccountNumber);
-        editSortCode = findViewById(R.id.editTextSortCode);
+        editSortCode1 = findViewById(R.id.editTextSortCode1);
+        editSortCode2 = findViewById(R.id.editTextSortCode2);
+        editSortCode3 = findViewById(R.id.editTextSortCode3);
         editUtr = findViewById(R.id.editTextUtr);
         editEmail = findViewById(R.id.editTextEmail);
         btnAddData = findViewById(R.id.buttonAddData);
@@ -43,39 +48,48 @@ public class MainActivity extends BaseActivity {
         addData();
         updateData();
         deleteData();
+
+        //Check if show user details has been selected
         if(Globals.triggerUserDetails)
             viewUserDetails();
-        Globals.invNo = myDb.invoiceNumber();
-        //showMessage("Invoice Number = ", String.valueOf(Globals.invNo));
 
+        //Check if there are any contractors
         int conConCount = myDb.isTableEmpty(DatabaseHelper.CONTRACTORS_TABLE);
         if(conConCount > 0){
             Globals.conCount = conConCount;
         }
 
+        //Update to new invoice number
+        int hasNumber = myDb.isTableEmpty(DatabaseHelper.INVOICE_TABLE);
+        if (hasNumber > 0)
+            Globals.invNo = myDb.invoiceNumber();
+
+
         int isEmpty = myDb.isTableEmpty(DatabaseHelper.COMPANY_TABLE);
-        if(isEmpty < 1){
+        //Just for development to insert dummy data
+        if(isEmpty < 1) {
             myDb.addTempCompanyData();
             myDb.addTempContractorsData();
             myDb.addTempContractorsData2();
             myDb.addTempContractorsData3();
-            Intent intent = new Intent(MainActivity.this,MainActivity.class);
-            finish();
-            startActivity(intent);
-            //Toast.makeText(this, "isEmpty = " + isEmpty, Toast.LENGTH_SHORT).show();
         }
+
+        //Set various global and button values
         if(isEmpty > 0) {
             Globals.showUserDetails = true;
             btnAddData.setEnabled(false);
             Globals.userData = true;
         }
 
+        //If there is data in the Company Table start base activity
         if (isEmpty > 0 && Globals.showUserDetails && Globals.userMenuClicked) {
         Intent intent = new Intent(this,BaseActivity.class);
         finish();
         startActivity(intent);
             //Toast.makeText(this, "Company Table has Data "+isEmpty, Toast.LENGTH_LONG).show();
         }
+
+        //If company table has no data set button values to allow and disallow actions
         if(isEmpty < 1){
             Toast.makeText(this, "Company table is empty", Toast.LENGTH_LONG).show();
             btnAddData.setEnabled(true);
@@ -84,6 +98,16 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    //Set the bank sort code
+    public String sortCode(){
+        String sorted1 = editSortCode1.getText().toString();
+        String sorted2 = editSortCode2.getText().toString();
+        String sorted3 = editSortCode3.getText().toString();
+        String sorted4 = sorted1 + "-" + sorted2 + "-" + sorted3;
+        return sorted4;
+    }
+
+    //Delete Company data
     public void deleteData(){
         btnDelete.setOnClickListener(
                 new View.OnClickListener() {
@@ -115,6 +139,7 @@ public class MainActivity extends BaseActivity {
         );
     }
 
+    //Update Company data
     public void updateData(){
         btnViewUpdate.setOnClickListener(
                 new View.OnClickListener() {
@@ -131,10 +156,11 @@ public class MainActivity extends BaseActivity {
                                 editBank.getText().toString(),
                                 editAccountTitle.getText().toString(),
                                 editAccountNumber.getText().toString(),
-                                editSortCode.getText().toString(),
+                                sortCode(),
                                 editUtr.getText().toString(),
                                 editEmail.getText().toString());
 
+                        //If data updated show user message of success
                         if(isUpdated == true) {
                             Toast.makeText(MainActivity.this, "Data sucessfully updated", Toast.LENGTH_SHORT).show();
                             btnAddData.setEnabled(false);
@@ -143,29 +169,32 @@ public class MainActivity extends BaseActivity {
                             Globals.showUserDetails = true;
                             Globals.userMenuClicked = true;
                             Globals.triggerUserDetails = false;
+                            //Start Base activity
+                            Intent intent = new Intent(MainActivity.this,BaseActivity.class);
+                            finish();
+                            startActivity(intent);
                         }
+                        //If data updated show user message of failure to update
                         else {
                             Toast.makeText(MainActivity.this, "Data update failed", Toast.LENGTH_SHORT).show();
                             btnAddData.setEnabled(true);
                             btnViewUpdate.setEnabled(false);
                             btnDelete.setEnabled(false);
                         }
-                        Intent intent = new Intent(MainActivity.this,BaseActivity.class);
-                        finish();
-                        startActivity(intent);
+
                     }
                 }
         );
     }
 
-
-
+    //Add Company data
     public void addData(){
 
         btnAddData.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //Ensure all the required fields contain input
                         if(editCompany.getText().toString().isEmpty()) {
                             Toast.makeText(MainActivity.this, "Name is required", Toast.LENGTH_SHORT).show();
                             editCompany.requestFocus();
@@ -211,9 +240,19 @@ public class MainActivity extends BaseActivity {
                             editAccountNumber.requestFocus();
                             return;
                         }
-                        if(editSortCode.getText().toString().isEmpty()) {
+                        if(editSortCode1.getText().toString().isEmpty()) {
                             Toast.makeText(MainActivity.this, "Bank sort code is required", Toast.LENGTH_SHORT).show();
-                            editSortCode.requestFocus();
+                            editSortCode1.requestFocus();
+                            return;
+                        }
+                        if(editSortCode2.getText().toString().isEmpty()) {
+                            Toast.makeText(MainActivity.this, "Bank sort code is required", Toast.LENGTH_SHORT).show();
+                            editSortCode2.requestFocus();
+                            return;
+                        }
+                        if(editSortCode3.getText().toString().isEmpty()) {
+                            Toast.makeText(MainActivity.this, "Bank sort code is required", Toast.LENGTH_SHORT).show();
+                            editSortCode3.requestFocus();
                             return;
                         }
                         if(editUtr.getText().toString().isEmpty()) {
@@ -226,6 +265,7 @@ public class MainActivity extends BaseActivity {
                             editEmail.requestFocus();
                             return;
                         }
+                        //Check for successfull data added to database
                        boolean isInserted = myDb.addCompanyData(editCompany.getText().toString(),
                                 editAddress.getText().toString(),
                                 editArea.getText().toString(),
@@ -236,16 +276,18 @@ public class MainActivity extends BaseActivity {
                                 editBank.getText().toString(),
                                 editAccountTitle.getText().toString(),
                                 editAccountNumber.getText().toString(),
-                                editSortCode.getText().toString(),
+                                sortCode(),
                                 editUtr.getText().toString(),
                                 editEmail.getText().toString());
 
                        if(isInserted == true){
+                           //Show user data succsessfully added
                            Toast.makeText(MainActivity.this, "Data sucessfully inserted", Toast.LENGTH_SHORT).show();
                            clearEdits();
                            Globals.userData = true;
                            Intent intent = new Intent(MainActivity.this,BaseActivity.class);
                            finish();
+                           //Set variables and button states
                            btnAddData.setEnabled(false);
                            btnViewUpdate.setEnabled(true);
                            btnDelete.setEnabled(true);
@@ -258,7 +300,7 @@ public class MainActivity extends BaseActivity {
                            Toast.makeText(MainActivity.this, "Data entry failed", Toast.LENGTH_SHORT).show();
                            //clearEdits();
                        }
-
+                        //If company table has data disable add data button
                         int isEmpty = myDb.isTableEmpty(DatabaseHelper.COMPANY_TABLE);
                         if(isEmpty > 0) {
                             btnAddData.setEnabled(false);
@@ -271,6 +313,16 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    //Remove the hyphen from the sort code string
+    public void splitSortCode(String sortCode){
+        String code = sortCode;
+        String [] sortSplit = code.split("-");
+        editSortCode1.setText(sortSplit[0]);
+        editSortCode2.setText(sortSplit[1]);
+        editSortCode3.setText(sortSplit[2]);
+    }
+
+    //Retrieve Company data and display it to the user
     public void viewUserDetails(){
         Cursor res = myDb.getAllCompanyData();
         if(res.getCount() == 0){
@@ -279,39 +331,26 @@ public class MainActivity extends BaseActivity {
             return;
         }
 
-        StringBuffer buffer = new StringBuffer();
         while (res.moveToNext()){
-            buffer.append("ID : "+res.getString(0)+"\n");
             editID.setText(res.getString(0));
-            buffer.append("Company Name : "+res.getString(1)+"\n");
             editCompany.setText(res.getString(1));
-            buffer.append("Address : "+res.getString(2)+"\n");
             editAddress.setText(res.getString(2));
-            buffer.append("Area : "+res.getString(3)+"\n");
             editArea.setText(res.getString(3));
-            buffer.append("Town : "+res.getString(4)+"\n");
             editTown.setText(res.getString(4));
-            buffer.append("County : "+res.getString(5)+"\n");
             editCounty.setText(res.getString(5));
-            buffer.append("Post Code : "+res.getString(6)+"\n");
             editPostCode.setText(res.getString(6));
-            buffer.append("Telephone No : "+res.getString(7)+"\n");
             editTelno.setText(res.getString(7));
-            buffer.append("Bank : "+res.getString(8)+"\n");
             editBank.setText(res.getString(8));
-            buffer.append("Account Title : "+res.getString(9)+"\n");
             editAccountTitle.setText(res.getString(9));
-            buffer.append("Account Number : "+res.getString(10)+"\n");
             editAccountNumber.setText(res.getString(10));
-            buffer.append("Sort Code : "+res.getString(11)+"\n");
-            editSortCode.setText(res.getString(11));
-            buffer.append("UTR : "+res.getString(12)+"\n");
+            splitSortCode(res.getString(11));
             editUtr.setText(res.getString(12));
-            buffer.append("email : "+res.getString(13)+"\n");
             editEmail.setText(res.getString(13));
         }
+
     }
 
+    //Method for development purposes only
     public void showMessage(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -320,6 +359,7 @@ public class MainActivity extends BaseActivity {
         builder.show();
     }
 
+    //Clear all edit fields
     public void clearEdits() {
         editID.setText("");
         editCompany.setText("");
@@ -332,7 +372,9 @@ public class MainActivity extends BaseActivity {
         editBank.setText("");
         editAccountTitle.setText("");
         editAccountNumber.setText("");
-        editSortCode.setText("");
+        editSortCode1.setText("");
+        editSortCode2.setText("");
+        editSortCode3.setText("");
         editUtr.setText("");
         editEmail.setText("");
     }

@@ -504,7 +504,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COMPANY_COL8,"HSBC");
         contentValues.put(COMPANY_COL9,"Mr C R Tompkinson");
         contentValues.put(COMPANY_COL10,"12341234");
-        contentValues.put(COMPANY_COL11,"402032");
+        contentValues.put(COMPANY_COL11,"40-20-32");
         contentValues.put(COMPANY_COL12,"1777265342");
         contentValues.put(COMPANY_COL13,"cliveray@live.co.uk");
 

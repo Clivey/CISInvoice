@@ -227,14 +227,38 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/editTextSortCode"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextSortCode1"
+        android:layout_width="52dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="2"
+        app:layout_constraintEnd_toStartOf="@+id/textView39"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAccountNumber" />
+
+    <EditText
+        android:id="@+id/editTextSortCode2"
+        android:layout_width="52dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="11dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="2"
+        app:layout_constraintEnd_toStartOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAccountNumber" />
+
+    <EditText
+        android:id="@+id/editTextSortCode3"
+        android:layout_width="52dp"
         android:layout_height="38dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Sort Code"
         android:inputType="number"
+        android:maxLength="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAccountNumber" />
 
@@ -268,7 +292,7 @@
         android:hint="UTR Number"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSortCode" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextSortCode1" />
 
     <TextView
         android:id="@+id/textView13"
@@ -335,5 +359,27 @@
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/editTextCompany"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="11dp"
+        android:text="-"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextSortCode2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAccountNumber" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:text="-"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextSortCode3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAccountNumber" />
 
 </android.support.constraint.ConstraintLayout>
