@@ -82,6 +82,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
             btnSaveInvoiceID.setText("Save Invoice");
             btnAddDay.setVisibility(View.VISIBLE);
         }
+        btnSaveInvoiceID.setEnabled(false);
 
         btnExitInvoice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +184,14 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        dateWorkedID.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus)
+                    btnSaveInvoiceID.setEnabled(false);
             }
         });
 
@@ -462,7 +471,12 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                     else
                         Toast.makeText(InvoiceActivity2.this, "Invoice Data Entry Failed", Toast.LENGTH_SHORT).show();
                 }
-
+                btnSaveInvoiceID.setEnabled(false);
+                Globals.DateIntent = "";
+                //Update to new invoice number
+                int hasNumber = myDb.isTableEmpty(DatabaseHelper.INVOICE_TABLE);
+                if (hasNumber > 0)
+                    Globals.invNo = myDb.invoiceNumber() - 1;
                 Intent intent = new Intent(InvoiceActivity2.this,BaseActivity.class);
                 finish();
                 startActivity(intent);
@@ -592,6 +606,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                     } else
                         Toast.makeText(InvoiceActivity2.this, "Day Data failed to insert", Toast.LENGTH_SHORT).show();
                 }
+                btnSaveInvoiceID.setEnabled(true);
             }
         });
     }
