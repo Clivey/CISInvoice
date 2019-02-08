@@ -19,6 +19,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/textView41"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:text="ID" />
+
+        <TextView
             android:id="@+id/textView33"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
@@ -66,6 +76,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <TextView
+            android:id="@+id/tvDayID"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:text="ID" />
 
         <TextView
             android:id="@+id/tvDayDateID"

@@ -2,16 +2,23 @@ package com.software.kinson.cisinvoicegenerator.Model;
 
 public class Days {
     String date;
-    int startTime, endTime, totalTime;
+    int dayID, startTime, endTime, totalTime;
 
-    public Days(String date, int startTime, int endTime, int totalTime) {
+    public Days(int dayID, String date, int startTime, int endTime, int totalTime) {
+        this.dayID = dayID;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.totalTime = totalTime;
     }
 
+
+
     public Days(){}
+
+    public int getDayID() { return dayID; }
+
+    public void setDayID(int dayID) { this.dayID = dayID; }
 
     public String getDate() {
         return date;

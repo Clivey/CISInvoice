@@ -42,16 +42,19 @@ public class DaysAdapter extends BaseAdapter {
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = layoutInflater.inflate(R.layout.custom_day_view,null);
+        TextView t_id = convertView.findViewById(R.id.tvDayID);
         TextView t1_date = convertView.findViewById(R.id.tvDayDateID);
         TextView t2_start = convertView.findViewById(R.id.tvDayStartID);
         TextView t3_end = convertView.findViewById(R.id.tvDayEndID);
         TextView t4_total = convertView.findViewById(R.id.tvDayTotalID);
 
         Days days = arrayList.get(position);
+        int dayID = days.getDayID();
         float start = days.getStartTime();
         float end = days.getEndTime();
         float totalTime = days.getTotalTime();
 
+        t_id.setText(String.valueOf(dayID));
         t1_date.setText(days.getDate());
         t2_start.setText(String.format("%.2f",start));
         t3_end.setText(String.format("%.2f",end));

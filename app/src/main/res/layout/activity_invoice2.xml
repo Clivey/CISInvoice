@@ -26,7 +26,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.382"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="94dp" />
+            tools:layout_editor_absoluteY="94dp"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <RelativeLayout
@@ -138,13 +139,14 @@
 
         <Button
             android:id="@+id/btnAddDayID"
-            android:layout_width="102dp"
+            android:layout_width="200dp"
             android:layout_height="37dp"
             android:layout_below="@+id/etHoursWorkedID"
             android:layout_alignBaseline="@+id/textView23"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="241dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="8dp"
+            android:elevation="0dp"
             android:text="@string/add_day"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="338dp" />
@@ -155,8 +157,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="109dp"
-            android:layout_marginBottom="58dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginBottom="54dp"
             android:text="@string/add_days_worked"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="349dp" />
@@ -224,12 +226,12 @@
 
         <Button
             android:id="@+id/btnDeleteDayID"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="37dp"
             android:layout_alignTop="@+id/textView30"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="242dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="115dp"
             android:enabled="false"
             android:text="Delete Day" />
     </RelativeLayout>

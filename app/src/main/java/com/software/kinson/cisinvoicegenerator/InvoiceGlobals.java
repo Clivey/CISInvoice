@@ -7,6 +7,7 @@ public class InvoiceGlobals {
     public static int endHour = 0;
     public static int dayOfMonth = 0;
     public static int month = 0;
+    public static int dayID = 0;
     public static String workDescription = "";
     public static String workCompleted = "";
     public static String workAddress = "";

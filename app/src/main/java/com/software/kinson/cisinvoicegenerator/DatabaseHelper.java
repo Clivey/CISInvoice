@@ -5,12 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.software.kinson.cisinvoicegenerator.Model.Contractors;
 import com.software.kinson.cisinvoicegenerator.Model.Days;
 import com.software.kinson.cisinvoicegenerator.Model.Invoices;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -122,6 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+
     //Update days Table
     public boolean updateDay(String contractorID, String invoiceNo, String date, String startTime, String endTime, String hoursWorked){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -134,7 +138,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DAYS_COL5,endTime);
         contentValues.put(DAYS_COL6,hoursWorked);
 
-        long result = db.update(DAYS_WORKED_TABLE, contentValues, "invoice_no = ? AND date = ?", new String[] { invoiceNo,date });
+        long result = db.update(DAYS_WORKED_TABLE, contentValues, "ID = ? AND invoice_no = ? AND date = ?",
+                new String[] {String.valueOf(InvoiceGlobals.dayID), invoiceNo,date });
         db.close();
         return result != -1;
     }
@@ -287,11 +292,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Check to see if specific day exists in Days Table
-    public Cursor dayExists(String invoiceNo, String date){
+    public Cursor dayExists(String inNo, String dt){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "select * from " + INVOICE_TABLE +
-                " where " + DAYS_COL3 + " = '" +  invoiceNo + "'";
+        String query = "select * from " + DAYS_WORKED_TABLE +
+                " where invoice_no = '" + inNo + "' AND date = '" + dt +"'";//? AND date = ? " + new String[] { inNo,dt };
         Cursor res = db.rawQuery(query,null);
+        Log.d(TAG, "dayExists: " + query);
         return res;
     }
 
@@ -393,7 +399,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Delete specific day
     public Integer deleteDay(String invoiceNo, String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(DAYS_WORKED_TABLE,  "invoice_no = ? AND date = ?", new String[] { invoiceNo,date });
+        return db.delete(DAYS_WORKED_TABLE,  "ID = ? AND invoice_no = ? AND date = ?",
+                new String[] {String.valueOf(InvoiceGlobals.dayID), invoiceNo,date });
     }
 
     //Delete specific Invoice
@@ -476,12 +483,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         while(cursor.moveToNext()){
+            int id = cursor.getInt(0);
             String date = cursor.getString(3);
             int start = cursor.getInt(4);
             int end = cursor.getInt(5);
             int total = cursor.getInt(6);
 
-            Days days = new Days(date,start,end,total);
+            Days days = new Days(id, date,start,end,total);
             arrayList.add(days);
             //Increase variable totalHours in InvoiceGlobals
             //to reflect the hours added

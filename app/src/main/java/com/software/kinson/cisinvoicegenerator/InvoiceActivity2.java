@@ -33,7 +33,7 @@ import java.util.TimeZone;
 public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.OnDateSetListener {
     DatabaseHelper myDb;
     EditText workDoneID, hourlyRateID;
-    TextView hoursWorkedID, dateWorkedID, startTimeID, endTimeID;
+    TextView hoursWorkedID, dateWorkedID, startTimeID, endTimeID, dayID;
     Button btnAddDay, btnSaveInvoiceID, btnExitInvoice, btnDeleteDay;
     ListView lvDays;
     TimePickerDialog timePickerDialog;
@@ -235,7 +235,6 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
 
     private void exitInvoice() {
         clearInvoiceGlobals();
-        InvoiceGlobals.editInvoice = false;
         Intent intent = new Intent(InvoiceActivity2.this,BaseActivity.class);
         finish();
         startActivity(intent);
@@ -245,10 +244,14 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
         lvDays.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView tvid = view.findViewById(R.id.tvDayID);
                 TextView start = view.findViewById(R.id.tvDayStartID);
                 TextView end = view.findViewById(R.id.tvDayEndID);
                 TextView hours = view.findViewById(R.id.tvDayTotalID);
                 TextView date = view.findViewById(R.id.tvDayDateID);
+                if(InvoiceGlobals.editInvoice)
+                    btnAddDay.setText("Update Day");
+                InvoiceGlobals.dayID = Integer.parseInt(tvid.getText().toString());
                 startTimeID.setText(start.getText().toString());
                 endTimeID.setText(end.getText().toString());
                 hoursWorkedID.setText(hours.getText().toString());
@@ -259,6 +262,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                 lvDays.setAdapter(daysAdapter);
                 daysAdapter.notifyDataSetChanged();
                 btnDeleteDay.setEnabled(true);
+                Toast.makeText(InvoiceActivity2.this, "ID = " + InvoiceGlobals.dayID, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -502,10 +506,13 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
         InvoiceGlobals.dayOfMonth = 0;
         InvoiceGlobals.startHour = 0;
         InvoiceGlobals.endHour = 0;
+        InvoiceGlobals.dayID = 0;
         btnSaveInvoiceID.setText("Save Invoice");
         InvoiceGlobals.editInvoice = false;
         InvoiceGlobals.maxDay = false;
     }
+
+
 
     public void pickDate(){
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
@@ -545,7 +552,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
         datePickerDialog.show();
 
     }
-
+    //todo change total fields in custom_day_view to display correctly
     public void addDay(){
         btnAddDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -560,16 +567,19 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
 
                 if(InvoiceGlobals.editInvoice){
                     Cursor cursor = myDb.dayExists(String.valueOf(InvoiceGlobals.invoiceNo),dateWorkedID.getText().toString());
-                    if(cursor.getCount() == 0){
+                    int count = cursor.getCount();
+                    showMessage("Cursor","cursor count = " + count);
+                    if(count < 1){
                         isDayUpdated = myDb.addDay(String.valueOf(InvoiceGlobals.contractorID),
                                 String.valueOf(InvoiceGlobals.invoiceNo),
                                 dateWorkedID.getText().toString(),
                                 startTimeID.getText().toString(),
                                 endTimeID.getText().toString(),
                                 String.valueOf(time));
-                        loadDaysListView();
                         saveInvoice();
                     }else {
+                        //showMessage("Add Day","Into update day");
+                        btnAddDay.setText("Add Day");
                          isDayUpdated = myDb.updateDay(String.valueOf(InvoiceGlobals.contractorID),
                                 String.valueOf(InvoiceGlobals.invoiceNo),
                                 dateWorkedID.getText().toString(),
@@ -588,6 +598,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
 
                     btnAddDay.setEnabled(false);
                 }else {
+                    //showMessage("Add Day","Into else clause");
                     isDayUpdated = myDb.addDay(String.valueOf(Globals.contractorID),
                             String.valueOf(Globals.invNo),
                             dateWorkedID.getText().toString(),
@@ -606,6 +617,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                     } else
                         Toast.makeText(InvoiceActivity2.this, "Day Data failed to insert", Toast.LENGTH_SHORT).show();
                 }
+                btnAddDay.setText("Add Day");
                 btnSaveInvoiceID.setEnabled(true);
             }
         });
