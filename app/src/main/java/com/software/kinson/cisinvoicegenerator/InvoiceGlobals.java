@@ -4,6 +4,7 @@ public class InvoiceGlobals {
     public static int contractorID = 0;
     public static int invoiceNo = 0;
     public static int startHour = 0;
+    public static int startmin = 0;
     public static int endHour = 0;
     public static int dayOfMonth = 0;
     public static int month = 0;

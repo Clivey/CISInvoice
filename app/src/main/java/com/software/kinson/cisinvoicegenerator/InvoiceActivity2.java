@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.software.kinson.cisinvoicegenerator.Adapters.DaysAdapter;
 import com.software.kinson.cisinvoicegenerator.Model.Days;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -159,7 +160,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!(dateWorkedID.getText().toString().isEmpty()))
+                if(!dateWorkedID.getText().toString().isEmpty())
                     setEndTime();
             }
 
@@ -287,7 +288,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
             } catch (ParseException e) {
             }
             calendar = Calendar.getInstance();
-            if(!endTimeID.getText().toString().isEmpty()) {
+            if(endTimeID.getText().toString().isEmpty()) {
                 calendar.setTime(date);
             }
             endHour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -380,21 +381,27 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
         calendar = Calendar.getInstance();
         if(InvoiceGlobals.editInvoice){
             SimpleDateFormat sdf = new SimpleDateFormat("hh.mm");
+            Toast.makeText(this, "Into startTime if", Toast.LENGTH_SHORT).show();
             Date date = null;
             try {
                 date = sdf.parse(startTimeID.getText().toString());
             } catch (ParseException e) {
             }
             //calendar = Calendar.getInstance();
-            if(!startTimeID.getText().toString().isEmpty()) {
+            if(startTimeID.getText().toString().isEmpty()) {
                 calendar.setTime(date);
+                Toast.makeText(this, "Into !startTimeID", Toast.LENGTH_SHORT).show();
             }
             startHour = calendar.get(Calendar.HOUR_OF_DAY);
         }
-        else if(InvoiceGlobals.startHour == 0)
+        else if(InvoiceGlobals.startHour == 0){
             startHour = calendar.get(Calendar.HOUR_OF_DAY);
-        else
+            Toast.makeText(this, "Into startTime else if", Toast.LENGTH_SHORT).show();
+        }
+        else {
             startHour = InvoiceGlobals.startHour;
+            Toast.makeText(this, "Into startTime else", Toast.LENGTH_SHORT).show();
+        }
 //        startMinute = calendar.get(Calendar.MINUTE);
 
         timePickerDialog = new TimePickerDialog(InvoiceActivity2.this, 3, new TimePickerDialog.OnTimeSetListener() {
@@ -413,31 +420,35 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                     startHour = startHour + 1;
                     startMinute = 00;
                 }
-//                        if (hourOfDay >= 12) {
-//                            amPm = "PM";
-//                        } else {
-//                            amPm = "AM";
-//                        }
                 startTimeID.setText(String.format("%02d:%02d", startHour, startMinute));
                 InvoiceGlobals.startHour = startHour;
+                InvoiceGlobals.startmin = startMinute;
                 //startTimeID.setText(startHour);
             }
 
         }, startHour, startMinute, true);
+
         timePickerDialog.setTitle("Select Start Time");
         timePickerDialog.show();
     }
+
+    //todo Find bug that sets start time textarea to 00.00 when editing existing day if the time is 08.00 0r 09.00
 
     public void saveInvoice(){
         btnSaveInvoiceID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //float hourlyRate = InvoiceGlobals.hourlyRate;
+                DecimalFormat f = new DecimalFormat("##.00");
                 float hourlyRate = Float.parseFloat(hourlyRateID.getText().toString());
                 float time = InvoiceGlobals.totalHours;
                 float totalEarned = (time * hourlyRate);
                 float tax = (float) (.2 * totalEarned);
                 float net = (totalEarned - tax);
+                //todo format output to store values in floats with 2 decimal places
+//                f.format(totalEarned);
+//                f.format(tax);
+//                f.format(net);
                 String workDone = workDoneID.getText().toString();
                 InvoiceGlobals.workCompleted = workDone;
                 //showMessage("Time","Time = " + time);
@@ -552,7 +563,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
         datePickerDialog.show();
 
     }
-    //todo change total fields in custom_day_view to display correctly
+
     public void addDay(){
         btnAddDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -568,7 +579,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                 if(InvoiceGlobals.editInvoice){
                     Cursor cursor = myDb.dayExists(String.valueOf(InvoiceGlobals.invoiceNo),dateWorkedID.getText().toString());
                     int count = cursor.getCount();
-                    showMessage("Cursor","cursor count = " + count);
+                    //showMessage("Cursor","cursor count = " + count);
                     if(count < 1){
                         isDayUpdated = myDb.addDay(String.valueOf(InvoiceGlobals.contractorID),
                                 String.valueOf(InvoiceGlobals.invoiceNo),
@@ -580,17 +591,18 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                     }else {
                         //showMessage("Add Day","Into update day");
                         btnAddDay.setText("Add Day");
+                        //showMessage("Invoice","startHour = " + InvoiceGlobals.startHour);
                          isDayUpdated = myDb.updateDay(String.valueOf(InvoiceGlobals.contractorID),
                                 String.valueOf(InvoiceGlobals.invoiceNo),
                                 dateWorkedID.getText().toString(),
                                 startTimeID.getText().toString(),
                                 endTimeID.getText().toString(),
                                 String.valueOf(time));
+                        InvoiceGlobals.dayOfMonth = InvoiceGlobals.dayOfMonth + 1;
                     }
                     if (isDayUpdated == true) {
                         Toast.makeText(InvoiceActivity2.this, "Day Data sucessfully updated", Toast.LENGTH_SHORT).show();
                         loadDaysListView();
-                        InvoiceGlobals.dayOfMonth = InvoiceGlobals.dayOfMonth + 1;
                         saveInvoice();
                         clearEdits();
                     }else

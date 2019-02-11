@@ -10,9 +10,9 @@
         android:id="@+id/linearLayout4"
         android:layout_width="368dp"
         android:layout_height="28dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,17 +20,17 @@
 
         <TextView
             android:id="@+id/textView41"
-            android:layout_width="30dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:text="ID" />
+            android:text="@string/id"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView33"
-            android:layout_width="50dp"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_marginStart="20dp"
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/textView32"
-            android:layout_width="30dp"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -70,8 +70,8 @@
     <LinearLayout
         android:layout_width="368dp"
         android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="32dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,31 +79,29 @@
 
         <TextView
             android:id="@+id/tvDayID"
-            android:layout_width="30dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:text="ID" />
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/tvDayDateID"
-            android:layout_width="50dp"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:text="@string/date"
             android:textAlignment="center" />
 
         <TextView
             android:id="@+id/tvDayStartID"
-            android:layout_width="30dp"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:text="@string/start_time"
             android:textAlignment="center" />
 
         <TextView
@@ -111,8 +109,8 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:text="@string/end_time"
             android:textAlignment="center" />
 
         <TextView
@@ -122,7 +120,6 @@
             android:layout_margin="5dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
-            android:text="@string/total_time2"
             android:textAlignment="center" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

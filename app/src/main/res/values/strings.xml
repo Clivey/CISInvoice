@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">CIS Invoice Generator</string>
-    <string name="id">ID</string>
     <string name="textview">TextView</string>
     <string name="save_invoice">Save Invoice</string>
     <string name="add_day">Add Day</string>
@@ -15,6 +14,7 @@
     <string name="date">Date</string>
     <string name="end_time">End Time</string>
     <string name="delete_invoice">Delete Invoice</string>
-    <string name="total_time">Total Time</string>
-    <string name="total_time2">Total Time</string>
+    <string name="total_time">Total</string>
+    <string name="total_time2">Total</string>
+    <string name="id">ID</string>
 </resources>

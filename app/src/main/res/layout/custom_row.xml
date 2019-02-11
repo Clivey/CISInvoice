@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="40"
-            android:text="@string/id"
             android:textSize="30sp" />
 
         <LinearLayout

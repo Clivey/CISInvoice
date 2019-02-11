@@ -60,9 +60,9 @@ public class MainActivity extends BaseActivity {
         }
 
         //Update to new invoice number
-        int hasNumber = myDb.isTableEmpty(DatabaseHelper.INVOICE_TABLE);
-        if (hasNumber > 0)
-            Globals.invNo = myDb.invoiceNumber();
+        //int hasNumber = myDb.isTableEmpty(DatabaseHelper.INVOICE_TABLE);
+        //if (hasNumber > 0)
+        Globals.invNo = myDb.invoiceNumber();
 
 
         int isEmpty = myDb.isTableEmpty(DatabaseHelper.COMPANY_TABLE);
