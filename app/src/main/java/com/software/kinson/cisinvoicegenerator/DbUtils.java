@@ -10,7 +10,7 @@ public class DbUtils {
     }
 
     public static String createCompanyTable() {
-        String tableQry = null;
+        String tableQry = "";
 
         tableQry = "create table if not exists " + COMPANY_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "company_name TEXT NOT NULL, address TEXT NOT NULL, area TEXT, town TEXT NOT NULL, county TEXT NOT NULL," +
@@ -22,7 +22,7 @@ public class DbUtils {
     }
 
     public static String createInvoiceTable(){
-        String str = null;
+        String str = "";
 
         str = "CREATE TABLE if not exists " + INVOICE_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " contractor_ID INTEGER NOT NULL," +
@@ -33,7 +33,7 @@ public class DbUtils {
     }
 
     public static String createContractorTable(){
-        String str = null;
+        String str = "";
 
         str =   "CREATE TABLE if not exists " + CONTRACTORS_TABLE + " (ID integer PRIMARY KEY AUTOINCREMENT," +
                 " name TEXT NOT NULL, address TEXT NOT NULL, area TEXT, town TEXT NOT NULL, " +
@@ -43,7 +43,7 @@ public class DbUtils {
     }
 
     public static String createDaysWorkedTable(){
-        String str = null;
+        String str = "";
 
         str ="CREATE TABLE IF NOT EXISTS " + DAYS_WORKED_TABLE + " (ID integer PRIMARY KEY AUTOINCREMENT,"  +
                 " contractors_id integer not null, invoice_no integer not null, date text not null," +
@@ -53,7 +53,7 @@ public class DbUtils {
     }
 
     public static String createInvoiceView(){
-        String str = null;
+        String str = "";
         str = "CREATE VIEW IF NOT EXISTS invoiceView AS SELECT" +
                 " companyTbl.ID as companyTbl_ID," +
                 " companyTbl.company_name as companyTbl_name," +
