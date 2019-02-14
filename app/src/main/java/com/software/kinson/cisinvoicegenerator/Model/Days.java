@@ -13,7 +13,7 @@ public class Days {
     }
 
 
-
+    //Empty constructor
     public Days(){}
 
     public int getDayID() { return dayID; }

@@ -295,7 +295,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor dayExists(String inNo, String dt){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "select * from " + DAYS_WORKED_TABLE +
-                " where invoice_no = '" + inNo + "' AND date = '" + dt +"'";//? AND date = ? " + new String[] { inNo,dt };
+                " where invoice_no = '" + inNo + "' AND date = '" + dt +"'";
         Cursor res = db.rawQuery(query,null);
         Log.d(TAG, "dayExists: " + query);
         return res;
@@ -483,11 +483,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         while(cursor.moveToNext()){
-            int id = cursor.getInt(0);
-            String date = cursor.getString(3);
-            int start = cursor.getInt(4);
-            int end = cursor.getInt(5);
-            int total = cursor.getInt(6);
+            int id = cursor.getInt(0);//ID
+            String date = cursor.getString(3);//date
+            int start = cursor.getInt(4);//start_time
+            int end = cursor.getInt(5);//end_time
+            int total = cursor.getInt(6);//hours_worked
 
             Days days = new Days(id, date,start,end,total);
             arrayList.add(days);

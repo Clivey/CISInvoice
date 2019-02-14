@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.OnDateSetListener {
@@ -257,7 +258,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                 endTimeID.setText(end.getText().toString());
                 hoursWorkedID.setText(hours.getText().toString());
                 dateWorkedID.setText(date.getText().toString());
-                dateWorkedID.requestFocus();
+                //dateWorkedID.requestFocus();
                 arrayList = myDb.populateDays();
                 daysAdapter = new DaysAdapter(InvoiceActivity2.this,arrayList);
                 lvDays.setAdapter(daysAdapter);
@@ -281,6 +282,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
     public void setEndTime(){
         calendar = Calendar.getInstance();
         if(InvoiceGlobals.editInvoice){
+            showMessage("Set End Time","editInvoice = true");
             SimpleDateFormat sdf = new SimpleDateFormat("hh.mm");
             Date date = null;
             try {
@@ -288,7 +290,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
             } catch (ParseException e) {
             }
             calendar = Calendar.getInstance();
-            if(endTimeID.getText().toString().isEmpty()) {
+            if(!endTimeID.getText().toString().isEmpty()) {
                 calendar.setTime(date);
             }
             endHour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -382,13 +384,14 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
         if(InvoiceGlobals.editInvoice){
             SimpleDateFormat sdf = new SimpleDateFormat("hh.mm");
             Toast.makeText(this, "Into startTime if", Toast.LENGTH_SHORT).show();
+            showMessage("Set Start Time","editInvoice = true");
             Date date = null;
             try {
                 date = sdf.parse(startTimeID.getText().toString());
             } catch (ParseException e) {
             }
             //calendar = Calendar.getInstance();
-            if(startTimeID.getText().toString().isEmpty()) {
+            if(!startTimeID.getText().toString().isEmpty()) {
                 calendar.setTime(date);
                 Toast.makeText(this, "Into !startTimeID", Toast.LENGTH_SHORT).show();
             }
@@ -587,7 +590,8 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                                 startTimeID.getText().toString(),
                                 endTimeID.getText().toString(),
                                 String.valueOf(time));
-                        saveInvoice();
+                        InvoiceGlobals.dayOfMonth = InvoiceGlobals.dayOfMonth + 1;
+
                     }else {
                         //showMessage("Add Day","Into update day");
                         btnAddDay.setText("Add Day");
@@ -598,7 +602,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                                 startTimeID.getText().toString(),
                                 endTimeID.getText().toString(),
                                 String.valueOf(time));
-                        InvoiceGlobals.dayOfMonth = InvoiceGlobals.dayOfMonth + 1;
+                        saveInvoice();
                     }
                     if (isDayUpdated == true) {
                         Toast.makeText(InvoiceActivity2.this, "Day Data sucessfully updated", Toast.LENGTH_SHORT).show();
