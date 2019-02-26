@@ -17,4 +17,7 @@
     <string name="total_time">Total</string>
     <string name="total_time2">Total</string>
     <string name="id">ID</string>
+    <string name="show_invoice">Show Invoice</string>
+    <string name="email_invoice">Email Invoice</string>
+    <string name="cancel">Cancel</string>
 </resources>

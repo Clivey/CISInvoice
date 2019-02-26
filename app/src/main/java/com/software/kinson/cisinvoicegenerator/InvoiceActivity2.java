@@ -492,7 +492,7 @@ public class InvoiceActivity2 extends BaseActivity implements DatePickerDialog.O
                 int hasNumber = myDb.isTableEmpty(DatabaseHelper.INVOICE_TABLE);
                 if (hasNumber > 0)
                     Globals.invNo = myDb.invoiceNumber() - 1;
-                Intent intent = new Intent(InvoiceActivity2.this,BaseActivity.class);
+                Intent intent = new Intent(InvoiceActivity2.this,ReportActivity.class);
                 finish();
                 startActivity(intent);
 
