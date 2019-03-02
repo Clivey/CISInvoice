@@ -13,6 +13,7 @@ public class ReportActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+        myDb = new DatabaseHelper(ReportActivity.this);
 
         btnShowInvoice = findViewById(R.id.btnShowInvoiceID);
         btnCancelInvoice = findViewById(R.id.btnCancelInvoiceID);
@@ -20,7 +21,7 @@ public class ReportActivity extends BaseActivity {
 
         showReportInvoice();
         emailReportInvoice();
-        cancelInvoice();
+        cancelReportInvoice();
     }
 
     public void showReportInvoice(){
@@ -41,7 +42,7 @@ public class ReportActivity extends BaseActivity {
         });
     }
 
-    public void cancelInvoice(){
+    public void cancelReportInvoice(){
         btnCancelInvoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

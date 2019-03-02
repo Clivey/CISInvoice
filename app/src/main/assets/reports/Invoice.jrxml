@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1c10019b-ff94-4ae6-958a-fb5d6b37a731">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CIS"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="844"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="147"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT  days_workedTbl . ID ,
+	 days_workedTbl .contractors_id,
+	 days_workedTbl .invoice_no,
+	 days_workedTbl .date,
+	 days_workedTbl .start_time,
+	 days_workedTbl .end_time,
+	 days_workedTbl .hours_worked,
+	 invoiceTbl . ID ,
+	 invoiceTbl . contractor_ID ,
+	 invoiceTbl .invoice_no,
+	 invoiceTbl .date,
+	 invoiceTbl .work_addr,
+	 invoiceTbl .work_area,
+	 invoiceTbl .work_town,
+	 invoiceTbl .work_county,
+	 invoiceTbl . work_postCode ,
+	 invoiceTbl .work_description,
+	 invoiceTbl .work_done,
+	 invoiceTbl .hourly_rate,
+	 invoiceTbl .gross_total,
+	 invoiceTbl .tax,
+	 invoiceTbl .net_total,
+	 invoiceTbl .cis,
+	 contractorsTbl . ID ,
+	 contractorsTbl .name,
+	 contractorsTbl .address,
+	 contractorsTbl .area,
+	 contractorsTbl .town,
+	 contractorsTbl .county,
+	 contractorsTbl .post_code,
+	 contractorsTbl .tel_no,
+	 contractorsTbl .email,
+	 contractorsTbl .cis,
+	 companyTbl . ID ,
+	 companyTbl .company_name,
+	 companyTbl .address,
+	 companyTbl .area,
+	 companyTbl .town,
+	 companyTbl .county,
+	 companyTbl .post_code,
+	 companyTbl .tel_no,
+	 companyTbl .bank,
+	 companyTbl .account_title,
+	 companyTbl .account_number,
+	 companyTbl .sort_code,
+	 companyTbl .utr_number,
+	 companyTbl .email
+FROM  invoiceTbl ,
+	 days_workedTbl ,
+	 contractorsTbl ,
+	 companyTbl 
+WHERE 
+	  invoiceTbl .invoice_no = '1' 
+	]]>
+	</queryString>
+	<field name="ID" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="days_workedTbl"/>
+	</field>
+	<field name="contractors_id" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="contractors_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="days_workedTbl"/>
+	</field>
+	<field name="invoice_no" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="invoice_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="days_workedTbl"/>
+	</field>
+	<field name="date" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="days_workedTbl"/>
+	</field>
+	<field name="start_time" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="start_time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="days_workedTbl"/>
+	</field>
+	<field name="end_time" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="end_time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="days_workedTbl"/>
+	</field>
+	<field name="hours_worked" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="hours_worked"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="days_workedTbl"/>
+	</field>
+	<field name="COLUMN_8" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="contractor_ID" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="contractor_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="COLUMN_10" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="invoice_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="COLUMN_11" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="work_addr" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="work_addr"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="work_area" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="work_area"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="work_town" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="work_town"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="work_county" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="work_county"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="work_postCode" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="work_postCode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="work_description" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="work_description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="work_done" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="work_done"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="hourly_rate" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="hourly_rate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="gross_total" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="gross_total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="tax" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="tax"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="net_total" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="net_total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="cis" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="cis"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="invoiceTbl"/>
+	</field>
+	<field name="COLUMN_24" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="name" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="address" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="area" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="area"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="town" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="town"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="county" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="county"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="post_code" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="post_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="tel_no" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="tel_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="email" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="COLUMN_33" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="cis"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="contractorsTbl"/>
+	</field>
+	<field name="COLUMN_34" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="company_name" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="company_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="COLUMN_36" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="COLUMN_37" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="area"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="COLUMN_38" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="town"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="COLUMN_39" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="county"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="COLUMN_40" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="post_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="COLUMN_41" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="tel_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="bank" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="bank"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="account_title" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="account_title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="account_number" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="account_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="sort_code" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="sort_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="utr_number" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="utr_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<field name="COLUMN_47" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="companyTbl"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="398" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="10" width="546" height="70" uuid="dca5c1ca-bf8d-4dc8-b026-5fada28877e5"/>
+				<textElement textAlignment="Center">
+					<font size="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{company_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="182" y="0" width="100" height="4" uuid="bedee067-0b65-4a9c-9e85-80868c73fd9b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a920589-664e-4c78-ae32-4c5fa3d44d9c"/>
+				</reportElement>
+				<text><![CDATA[work_description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="20" uuid="a741585e-f24d-4840-a38d-c343f965e40f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="942900b6-789b-427e-ab5c-1c494d3e5891"/>
+				</reportElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="0" width="70" height="15" uuid="937eec62-67e6-497a-9ead-717c78300939">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="63c295a3-b031-4c33-ba5a-fc6bccb4e284"/>
+				</reportElement>
+				<text><![CDATA[Start Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="0" width="70" height="15" uuid="7f6bee27-e30e-4d83-a4f4-977f05412e6a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="403a5611-3b89-4523-8fa1-4810f247e975"/>
+				</reportElement>
+				<text><![CDATA[Finish Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="0" width="70" height="15" uuid="b0db5fce-477f-404b-8ddb-9116a568704f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0696d8f-7680-442b-b7f6-6e36463687e3"/>
+				</reportElement>
+				<text><![CDATA[Total Hours]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="0" width="100" height="15" uuid="120bf959-1598-4bb0-9363-76810a9c785a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f275801-e8b8-415a-ab3f-151902c785c5"/>
+				</reportElement>
+				<text><![CDATA[date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="118" y="0" width="70" height="15" uuid="759075ce-d95d-45a4-97c9-77ce909a7e5f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="63c295a3-b031-4c33-ba5a-fc6bccb4e284"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{start_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="70" height="15" uuid="b9f13b43-2503-41d5-96da-2837098ab063">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="403a5611-3b89-4523-8fa1-4810f247e975"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{end_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="0" width="70" height="15" uuid="a7180be9-05d2-4da3-b5ec-05c4f2a85da4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0696d8f-7680-442b-b7f6-6e36463687e3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{hours_worked}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="0" width="70" height="15" uuid="4aab5cb8-aad6-4fdf-94e4-bff8dcf4a706">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f2005b3-89bd-4d48-a8ce-675a037126ce"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="269" splitType="Stretch">
+			<staticText>
+				<reportElement x="204" y="25" width="100" height="19" uuid="4d79e50b-59d4-4ec4-a2d4-4c78571862cc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Gross]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="52" width="100" height="25" uuid="5d68f307-6203-4986-a6ed-517a25a37666"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Tax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="77" width="100" height="20" uuid="35a12175-4ca8-456d-a16d-bd81908ed90c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Net]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="25" width="20" height="20" uuid="df15a045-a14a-4431-9103-e7db30b181de"/>
+				<textElement>
+					<font size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[£]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="50" width="20" height="20" uuid="e51c7f00-9da9-4526-a13b-e41cff0dc39a"/>
+				<textElement>
+					<font size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[£]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="77" width="20" height="20" uuid="c52c6221-21b5-4a3b-b7f9-0adedae1ec22"/>
+				<textElement>
+					<font size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[£]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="24" width="100" height="20" uuid="6c5bf171-a684-4657-a9ef-c0e96c94e5dd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gross_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="49" width="100" height="20" uuid="03723c45-7ce9-4d84-97dc-8596ce9c0cc0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="76" width="100" height="20" uuid="06a7ff13-885b-45ee-89bf-dc783da9d4c4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{net_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="50" y="150" width="81" height="15" forecolor="#3180A8" uuid="e8be366c-c863-41d1-b50c-afbc5720ac48"/>
+				<textElement>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Payments to:]]></text>
+			</staticText>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="171" width="131" height="15" forecolor="#3180A8" uuid="be9fb584-770d-4f48-b5a5-352c4c6343fd"/>
+				<textFieldExpression><![CDATA[$F{bank}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="192" width="61" height="15" forecolor="#3180A8" uuid="8b7a2459-ce67-4cb8-83f8-e09d01456a01"/>
+				<text><![CDATA[Sort Code]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="192" width="100" height="15" forecolor="#3180A8" uuid="41d2312e-78d2-49fd-812d-c400cd83f3ae"/>
+				<textFieldExpression><![CDATA[$F{sort_code}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="213" width="77" height="15" forecolor="#3180A8" uuid="a2802a5a-a341-42a8-9def-5d112406f0c6"/>
+				<text><![CDATA[Account Number]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="213" width="100" height="15" forecolor="#3180A8" uuid="8fead380-6490-4a46-8979-885a88646111"/>
+				<textFieldExpression><![CDATA[$F{account_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="234" width="76" height="15" forecolor="#3180A8" uuid="0674b561-030a-4618-985f-3262637a9e71"/>
+				<text><![CDATA[U.T.R. Number]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="150" width="100" height="15" forecolor="#3180A8" uuid="362bcea2-2c07-40c6-bc8b-088ce13f8959"/>
+				<textFieldExpression><![CDATA[$F{company_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="234" width="100" height="15" forecolor="#3180A8" uuid="6ed37a61-7c86-41e2-80b9-03b9c35d1909"/>
+				<textFieldExpression><![CDATA[$F{utr_number}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
